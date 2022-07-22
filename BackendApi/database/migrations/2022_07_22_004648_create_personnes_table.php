@@ -10,11 +10,20 @@ return new class extends Migration
      * Run the migrations.
      *
      * @return void
-     */
+    */
     public function up()
     {
         Schema::create('personnes', function (Blueprint $table) {
             $table->id();
+            $table->string('civilite');
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('telephone')->unique()->nullable();
+            $table->string('adresse')->nullable();
+            $table->boolean('disponibilite')->nullable();
+            $table->string('email')->unique();
+            $table->string('mot_de_passe')->nullable();
+            $table->foreignId('role_id')->references('id')->on('roles');
             $table->timestamps();
         });
     }

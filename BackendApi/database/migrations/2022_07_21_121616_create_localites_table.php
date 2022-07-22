@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('localites', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->foreignId('commune_id')
+            ->constrained()
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
             $table->timestamps();
         });
     }
