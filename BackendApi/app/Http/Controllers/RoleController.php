@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Nette\Utils\Json;
 
 class RoleController extends Controller
 {
@@ -37,8 +38,13 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         //
-        dd($request ['libelle']);
+        dd($request['libelle']);
         $roles = Role::create($request->all());
+        return response()->json([
+            'succes' => true,
+            'message' => 'Role created successfully',
+            'data' => $roles
+        ]);
     }
 
     /**
